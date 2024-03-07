@@ -10,10 +10,14 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    function test()
+    {
+        echo "Hola mundo";
+    }
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * The attribut that are mass assignable.
      *
      * @var array<int, string>
      */

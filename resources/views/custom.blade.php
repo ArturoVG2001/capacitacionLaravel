@@ -6,6 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    {{$user->email}}
+   <h1><?php
+   echo $msj;
+   ?></h1>
+   <h1><?= $msj?></h1>
+
+   <h1>{{$msj}} {{$edad}}</h1>
 </body>
 </html>
