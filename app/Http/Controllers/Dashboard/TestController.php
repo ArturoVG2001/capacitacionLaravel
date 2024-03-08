@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard;
 
 
 use Illuminate\Http\Request;
@@ -13,7 +13,9 @@ class TestController extends Controller
      */
     public function index()
     {
-        return view("index",["name"=> "arturo", "age" => 22, 'html' => '<h1>Titulo</h1>', 'array' => [1,2,3,4]]);
+        $posts = [1,2,3,4];
+        $name = 'arturo';
+        return view("dashboard/test/index",compact("posts","name"));
     }
 
     /**
