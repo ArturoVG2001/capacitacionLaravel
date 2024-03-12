@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Http\Requests\post\StoreRequest;
+use App\Models\Category;
+use App\Models\Post;
+
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -12,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        echo "index";
     }
 
     /**
@@ -20,7 +25,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        
+        $categories = Category::pluck('id','title');
+
+        echo view('dashboard.post.create', compact('categories'));
     }
 
     /**
@@ -28,13 +36,27 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //echo request('title');
+        //echo $request->input('slug');
+        //dd( );
+
+        //$validated = $request->validate(StoreRequest::myRules());
+        //dd($validated);
+        //$request->validate(StoreRequest::myRules());
+        
+        $validate = Validator::make($request->all(),StoreRequest::myRules());
+        
+        dd($validate->errors());
+        $data = array_merge($request->all(),['image' => '']);
+        dd($data);
+        Post::create($data);
+        //dd($request->all());
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
         //
     }
@@ -42,7 +64,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
         //
     }
@@ -50,7 +72,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
         //
     }
@@ -58,7 +80,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
         //
     }
