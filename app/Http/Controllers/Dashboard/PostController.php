@@ -34,7 +34,7 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         //echo request('title');
         //echo $request->input('slug');
@@ -44,11 +44,11 @@ class PostController extends Controller
         //dd($validated);
         //$request->validate(StoreRequest::myRules());
         
-        $validate = Validator::make($request->all(),StoreRequest::myRules());
+        //$validate = Validator::make($request->all(),StoreRequest::myRules());
         
-        dd($validate->errors());
+        //dd($validate->errors());
         $data = array_merge($request->all(),['image' => '']);
-        dd($data);
+        //dd($data);
         Post::create($data);
         //dd($request->all());
     }

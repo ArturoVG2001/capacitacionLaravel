@@ -8,6 +8,15 @@
 </head>
 <body>
     <h1>Crear post</h1>
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $e)
+            <div class="error">
+                {{ $e }}
+            </div>
+        @endforeach       
+    @endif
+
     <form action="{{ route('post.store') }}" method="POST">
         @csrf
         <label for="">Titulo</label>
