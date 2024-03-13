@@ -18,7 +18,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::get();
+        //return to_route("post");
+        //return redirect()->route("post.create");
+        //return redirect("/post/create");
+        //return route("post.create");
+        $posts = Post::paginate(2);
 
         //dd($posts);
         return view('dashboard.post.index', compact('posts'));
@@ -28,11 +32,10 @@ class PostController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        
+    {        
         $categories = Category::pluck('id','title');
-
-        echo view('dashboard.post.create', compact('categories'));
+        $post = new Post();
+        echo view('dashboard.post.create', compact('categories','post'));
     }
 
     /**
@@ -59,6 +62,7 @@ class PostController extends Controller
         //dd($data);
         //Post::create($data);
         //dd($request->all());
+        return to_route("post");
     }
 
     /**
@@ -86,6 +90,7 @@ class PostController extends Controller
     {
         //dd($request->validated());
         $post->update($request->validated());
+        return to_route("post.index");
     }
 
     /**
@@ -94,5 +99,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         echo "destoyed";
+        //return to_route("post");
     }
 }

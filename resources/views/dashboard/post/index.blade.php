@@ -28,13 +28,13 @@
                             @method('DELETE')
                             @csrf
                             <button type="submit">Eliminar</button>
-
                         </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    {{ $posts->links() }}
 
 
 @endsection
