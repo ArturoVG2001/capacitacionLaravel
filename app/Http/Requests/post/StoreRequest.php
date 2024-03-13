@@ -3,12 +3,21 @@
 namespace App\Http\Requests\post;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
+    protected function prepareForValidation(){
+        $this->merge([
+            'slug'=> Str::slug($this->title)
+            //'slug'=> Str::of($this->title)->slug()->append("-adicional"),
+            //'slug' => str($this->title)->slug()
+        ]);
+        
+    }
 
     static function myRules(){
         return [
