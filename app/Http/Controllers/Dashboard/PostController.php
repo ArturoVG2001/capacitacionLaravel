@@ -18,7 +18,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        echo "index";
+        $posts = Post::get();
+
+        //dd($posts);
+        return view('dashboard.post.index', compact('posts'));
     }
 
     /**
@@ -63,7 +66,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        echo "show";
     }
 
     /**
@@ -71,7 +74,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        echo "edit";
     }
 
     /**
@@ -87,6 +90,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        echo "destoyed";
     }
 }
