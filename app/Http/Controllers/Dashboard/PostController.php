@@ -23,7 +23,6 @@ class PostController extends Controller
         //return redirect("/post/create");
         //return route("post.create");
         $posts = Post::paginate(2);
-
         //dd($posts);
         return view('dashboard.post.index', compact('posts'));
     }
@@ -98,7 +97,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        echo "destoyed";
-        //return to_route("post");
+        $post->delete();
+        return to_route("post.index");
     }
 }
