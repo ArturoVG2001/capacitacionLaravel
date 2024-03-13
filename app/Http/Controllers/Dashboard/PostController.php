@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Requests\post\StoreRequest;
+
+use App\Http\Requests\post\PutRequest;
 use App\Models\Category;
 use App\Models\Post;
 
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
+
 
 class PostController extends Controller
 {
@@ -74,15 +74,18 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        echo "edit";
+        $categories = Category::pluck('id','title');
+
+        echo view('dashboard.post.edit', compact('categories', 'post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(PutRequest $request, Post $post)
     {
-        //
+        //dd($request->validated());
+        $post->update($request->validated());
     }
 
     /**
