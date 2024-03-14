@@ -19,14 +19,15 @@ class PutRequest extends FormRequest
      */
     public function rules()
     {
-        //dd($this->route("post")->id);
+        //dd($this->o-route("post")->id);
         return [
             'title' =>'required|min:5|max:500',
             'slug' =>'required|min:5|max:500|unique:posts,slug,'.$this->route("post")->id,
             'content' =>'required|min:7',
             'category_id' =>'required',
             'description' =>'required|min:7',
-            'posted' => 'required'
+            'posted' => 'required',
+            'image' => 'mimes:jpeg,jpg,png|max:10240'
         ];
     }
 }
