@@ -1,7 +1,7 @@
 @extends('dashboard.layout')
 
 @section('content')
-    Hola mundo
+    <h1>Hola mundo Laravel</h1>
 
     <a href="{{ route("post.create") }}"></a>
 

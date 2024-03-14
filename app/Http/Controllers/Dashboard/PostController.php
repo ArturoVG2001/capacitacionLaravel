@@ -61,7 +61,7 @@ class PostController extends Controller
         //dd($data);
         //Post::create($data);
         //dd($request->all());
-        return to_route("post");
+        return to_route("post")->with('status','Registro creado.');
     }
 
     /**
@@ -78,7 +78,6 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::pluck('id','title');
-
         echo view('dashboard.post.edit', compact('categories', 'post'));
     }
 
@@ -89,7 +88,9 @@ class PostController extends Controller
     {
         //dd($request->validated());
         $post->update($request->validated());
-        return to_route("post.index");
+        //$request->session()->flash('status','Registro actulizado');
+    
+        return to_route("post.index")->with('status','Registro actulizado.');
     }
 
     /**
@@ -98,6 +99,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return to_route("post.index");
+        return to_route("post.index")->with('status','Registro eliminado.');
     }
 }
