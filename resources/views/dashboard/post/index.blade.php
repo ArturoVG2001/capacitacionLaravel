@@ -22,7 +22,7 @@
                     <td>{{$p->posted}}</td>
                     <td>
                         <a href="{{route("post.edit", $p) }}">Editar</a>
-                        <a href="{{route("post.show", $p) }}">Crear</a>
+                        <a href="{{route("post.show", $p) }}">Vista</a>
 
                         <form action="{{route("post.destroy", $p) }}" method="POST">
                             @method('DELETE')

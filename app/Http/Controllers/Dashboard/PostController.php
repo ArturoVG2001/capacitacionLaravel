@@ -69,7 +69,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        echo "show";
+        return view("dashboard.post.show",compact('post'));
     }
 
     /**
